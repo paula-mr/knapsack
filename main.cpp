@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <iostream>
 
+#include "Mochila.h"
+#include "Quicksort.h"
+
 FILE* abrirArquivo(int argc, char *argv[]);
 int recuperarNumero(FILE* arquivo);
 
@@ -23,6 +26,13 @@ int main(int argc, char *argv[]) {
     }
 
 	fclose(arquivo);
+
+	ordenar(ilhas, qtdIlhas);
+
+	int diasComRepeticao = 0, pontuacaoComRepeticao = 0;
+	comRepeticao(ilhas, gastoMax, qtdIlhas, &diasComRepeticao, &pontuacaoComRepeticao);
+
+	std::cout << pontuacaoComRepeticao << " " << diasComRepeticao << "\n";
 
     return 0;
 }

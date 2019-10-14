@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1571087819 source:c:\users\dell\documents\ufmg\alg1\knapsack\mochila.cpp
+	<iostream>
+
+1571087830 source:c:\users\dell\documents\ufmg\alg1\knapsack\main.cpp
+	<stdio.h>
+	<iostream>
+	"Mochila.h"
+	"Quicksort.h"
+
+1571085388 c:\users\dell\documents\ufmg\alg1\knapsack\mochila.h
+
+1571087213 source:c:\users\dell\documents\ufmg\alg1\knapsack\quicksort.cpp
+	"Quicksort.h"
+
+1571087091 c:\users\dell\documents\ufmg\alg1\knapsack\quicksort.h
+

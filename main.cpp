@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
 
 	ordenar(ilhas, qtdIlhas);
 
+	//executa algoritmo nao dinamico para obter
 	int diasComRepeticao = 0, pontuacaoComRepeticao = 0;
 	comRepeticao(ilhas, gastoMax, qtdIlhas, &diasComRepeticao, &pontuacaoComRepeticao);
 

@@ -13,16 +13,15 @@ int comRepeticao(int ilhas[][2], int orcamento, int n, int* dias, int* pontuacao
         return comRepeticao(ilhas, orcamento, n-1, dias, pontuacao);
     }
 
-
     int itemIncluido, itemNaoIncluido;
 
     int pontuacaoIncluida = *pontuacao + ilhas[n-1][1];
-    int pontuacaoNaoIncluida = *pontuacao;
-
     int diasIncluido = *dias + 1;
+
+    int pontuacaoNaoIncluida = *pontuacao;
     int diasNaoIncluido = *dias;
 
-    itemIncluido = ilhas[n-1][0] + comRepeticao(ilhas, orcamento-ilhas[n-1][0], n-1, &diasIncluido, &pontuacaoIncluida);
+    itemIncluido = ilhas[n-1][1] + comRepeticao(ilhas, orcamento-ilhas[n-1][0], n, &diasIncluido, &pontuacaoIncluida);
     itemNaoIncluido = comRepeticao(ilhas, orcamento, n-1, &diasNaoIncluido, &pontuacaoNaoIncluida);
 
     if (itemIncluido < itemNaoIncluido) {
@@ -31,8 +30,7 @@ int comRepeticao(int ilhas[][2], int orcamento, int n, int* dias, int* pontuacao
         return itemNaoIncluido;
     }
 
-    *dias = diasIncluido;
     *pontuacao = pontuacaoIncluida;
-
+    *dias = diasIncluido;
     return itemIncluido;
 }

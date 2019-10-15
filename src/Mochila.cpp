@@ -10,23 +10,28 @@ void semRepeticao(int ilhas[][2], int orcamento, int tamanho, int* dias, int* po
 
     for (int i = 0; i <= tamanho; i++) { 
        for (int w = 0; w <= orcamento; w++) { 
-           if (i==0 || w==0) {
+            //valida posicoes iniciais para evitar array out of bounds
+            if (i==0 || w==0) {
                 possibilidades[i][w] = 0; 
-           }
-           else if (ilhas[i-1][0] <= w) {
+            }
+            else if (ilhas[i-1][0] <= w) {
+                //se ha espaco no orcamento, adiciona o maior possivel
                 possibilidades[i][w] = maximo(ilhas[i-1][1] + possibilidades[i-1][w-ilhas[i-1][0]],  possibilidades[i-1][w]); 
-           }
-           else {
+            }
+            else {
                 //a pontuacao sera a mesma: nao eh possivel adicionar mais um item
                 possibilidades[i][w] = possibilidades[i-1][w]; 
-           }
+            }
        } 
     } 
 
     *pontuacao = possibilidades[tamanho][orcamento];
-    int resultado = possibilidades[tamanho][orcamento];
 
+    //salva resultado de pontuacao e o orcamento em variavel auxiliar
+    int resultado = possibilidades[tamanho][orcamento];
     int w = orcamento; 
+
+    //navega na matriz para ver quantos dias a viagem durara
     for (int i = tamanho; i > 0 && resultado > 0; i--) { 
         if (resultado == possibilidades[i - 1][w])  
             continue;         
@@ -39,6 +44,7 @@ void semRepeticao(int ilhas[][2], int orcamento, int tamanho, int* dias, int* po
     } 
 }
 
+//funcao que retorna o maximo entre dois numeros
 int maximo(int a, int b) { 
     return (a > b) ? a : b; 
 } 

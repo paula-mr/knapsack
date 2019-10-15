@@ -5,32 +5,17 @@ int semRepeticao(int ilhas[][2], int orcamento, int n, int* dias, int* pontuacao
 }
 
 int comRepeticao(int ilhas[][2], int orcamento, int n, int* dias, int* pontuacao) {
-
-    if (n == 0 || orcamento == 0)
-        return 0;
-
-    if (ilhas[n-1][0] > orcamento) {
-        return comRepeticao(ilhas, orcamento, n-1, dias, pontuacao);
+    int custo = 0, i = 0;
+    
+    while (orcamento - custo >= 0 && i < n) {
+        if (ilhas[i][0] <= (orcamento-custo)) {
+            custo += ilhas[i][0];
+            *dias = *dias+1;
+            *pontuacao += ilhas[i][1];
+        } else {
+            i++;
+        }
     }
 
-    int itemIncluido, itemNaoIncluido;
-
-    int pontuacaoIncluida = *pontuacao + ilhas[n-1][1];
-    int diasIncluido = *dias + 1;
-
-    int pontuacaoNaoIncluida = *pontuacao;
-    int diasNaoIncluido = *dias;
-
-    itemIncluido = ilhas[n-1][1] + comRepeticao(ilhas, orcamento-ilhas[n-1][0], n, &diasIncluido, &pontuacaoIncluida);
-    itemNaoIncluido = comRepeticao(ilhas, orcamento, n-1, &diasNaoIncluido, &pontuacaoNaoIncluida);
-
-    if (itemIncluido < itemNaoIncluido) {
-        *pontuacao = pontuacaoNaoIncluida;
-        *dias = diasNaoIncluido;
-        return itemNaoIncluido;
-    }
-
-    *pontuacao = pontuacaoIncluida;
-    *dias = diasIncluido;
-    return itemIncluido;
+    return custo;
 }

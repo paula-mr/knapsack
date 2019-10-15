@@ -28,11 +28,7 @@ int main(int argc, char *argv[]) {
 	fclose(arquivo);
 
 	ordenar(ilhas, qtdIlhas);
-
-    for (int i=0; i<qtdIlhas;i++) {
-        std::cout << ilhas[i][0] << " " << ilhas[i][1] << "\n";
-    }
-
+    
 	//executa algoritmo nao dinamico para obter
 	int diasComRepeticao = 0, pontuacaoComRepeticao = 0;
 	comRepeticao(ilhas, gastoMax, qtdIlhas, &diasComRepeticao, &pontuacaoComRepeticao);

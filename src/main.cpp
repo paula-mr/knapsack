@@ -2,7 +2,6 @@
 #include <iostream>
 
 #include "Mochila.h"
-#include "Mergesort.h"
 
 FILE* abrirArquivo(int argc, char *argv[]);
 int recuperarNumero(FILE* arquivo);
@@ -27,8 +26,6 @@ int main(int argc, char *argv[]) {
 
 	fclose(arquivo);
 
-	ordenar(ilhas, qtdIlhas);
-    
 	//executa algoritmo nao dinamico para obter
 	int diasComRepeticao = 0, pontuacaoComRepeticao = 0;
 	comRepeticao(ilhas, gastoMax, qtdIlhas, &diasComRepeticao, &pontuacaoComRepeticao);

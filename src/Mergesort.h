@@ -1,5 +1,5 @@
-#ifndef QUICKSORT_H
-#define QUICKSORT_H
+#ifndef MERGESORT_H
+#define MERGESORT_H
 
 void ordenar(int ilhas[][2], int n);
 

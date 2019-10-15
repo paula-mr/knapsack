@@ -7,21 +7,20 @@ int semRepeticao(int ilhas[][2], int orcamento, int tamanho, int* dias, int* pon
 }
 
 int comRepeticao(int ilhas[][2], int orcamento, int tamanho, int* dias, int* pontuacao) {
-    int custo = 0, i = 0;
+    int custo = 0;
 
     //ordena por custo beneficio
     ordenar(ilhas, tamanho);
     
     //executa enquanto houver orcamento ou o array acabar
-    while (orcamento - custo >= 0 && i < tamanho) {
+    for (int i=0; i < tamanho; i++) {
         if (ilhas[i][0] <= (orcamento-custo)) {
-            //caso o custo da ilha seja menor ou igual ao orcamento disponivel, adiciona-a
-            custo += ilhas[i][0];
-            *dias = *dias+1;
-            *pontuacao += ilhas[i][1];
-        } else {
-            //passa para o proximo elemento da lista ordenada por custo beneficio
-            i++;
+            //caso o custo da ilha seja menor ou igual ao orcamento disponivel
+            //adiciona a quantidade de vezes disponiveis
+            int qtdDias = (orcamento-custo)/ilhas[i][0];
+            custo += ilhas[i][0]*qtdDias;
+            *dias = *dias+qtdDias;
+            *pontuacao += ilhas[i][1]*qtdDias;
         }
     }
 

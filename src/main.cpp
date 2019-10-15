@@ -26,11 +26,17 @@ int main(int argc, char *argv[]) {
 
 	fclose(arquivo);
 
-	//executa algoritmo nao dinamico para obter
+	//executa algoritmo nao dinamico com repeticao
 	int diasComRepeticao = 0, pontuacaoComRepeticao = 0;
 	comRepeticao(ilhas, gastoMax, qtdIlhas, &diasComRepeticao, &pontuacaoComRepeticao);
 
-	std::cout << pontuacaoComRepeticao << " " << diasComRepeticao << "\n";
+    std::cout << pontuacaoComRepeticao << " " << diasComRepeticao << "\n";
+
+    //executa algoritmo dinamico sem repeticao
+    int diasSemRepeticao = 0, pontuacaoSemRepeticao = 0;
+    semRepeticao(ilhas, gastoMax, qtdIlhas, &diasSemRepeticao, &pontuacaoSemRepeticao);
+
+	std::cout << pontuacaoSemRepeticao << " " << diasSemRepeticao << "\n";
 
     return 0;
 }

@@ -48,7 +48,7 @@ void merge(Ilha ilhas[], int esquerda, int meio, int direita) {
 
     while (i < tamanhoEsquerda && j < tamanhoDireita) {
         //define qual item possui maior custo beneficio
-        if (calcularCustoBeneficio(arrayEsquerda[i]) <= calcularCustoBeneficio(arrayDireita[j])) {
+        if (arrayEsquerda[i].calcularCustoBeneficio() <= arrayDireita[j].calcularCustoBeneficio()) {
             ilhas[k].custo = arrayEsquerda[i].custo;
             ilhas[k].pontuacao = arrayEsquerda[i].pontuacao;
             i++;
@@ -77,9 +77,4 @@ void merge(Ilha ilhas[], int esquerda, int meio, int direita) {
         k++;
     }
 
-}
-
-//calcula o custo beneficio da ilha com base em custo e pontos atribuidos
-float calcularCustoBeneficio(Ilha ilha) {
-    return ilha.custo/ilha.pontuacao;
 }

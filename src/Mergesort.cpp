@@ -2,7 +2,6 @@
 
 void ordena(Ilha ilhas[], int esquerda, int direita);
 void merge(Ilha ilhas[], int esquerda, int meio, int direita);
-float calcularCustoBeneficio(Ilha ilha);
 
 void ordenar(Ilha ilhas[], int n) {
     //inicia funcao de ordenacao por mergesort

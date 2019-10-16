@@ -1,6 +1,8 @@
 #ifndef MERGESORT_H
 #define MERGESORT_H
 
-void ordenar(int ilhas[][2], int n);
+#include "Ilha.h"
+
+void ordenar(Ilha ilhas[], int n);
 
 #endif

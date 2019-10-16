@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Mochila.h"
+#include "Ilha.h"
 
 FILE* abrirArquivo(int argc, char *argv[]);
 int recuperarNumero(FILE* arquivo);
@@ -17,11 +18,11 @@ int main(int argc, char *argv[]) {
     gastoMax = recuperarNumero(arquivo);
     qtdIlhas = recuperarNumero(arquivo);
 
-    int ilhas[qtdIlhas][2];
+    Ilha ilhas[qtdIlhas];
 
     for (int i=0; i<qtdIlhas;i++) {
-        ilhas[i][0] = recuperarNumero(arquivo);
-        ilhas[i][1] = recuperarNumero(arquivo);
+        ilhas[i].custo = recuperarNumero(arquivo);
+        ilhas[i].pontuacao = recuperarNumero(arquivo);
     }
 
 	fclose(arquivo);

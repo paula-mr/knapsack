@@ -18,24 +18,24 @@ int main(int argc, char *argv[]) {
     gastoMax = recuperarNumero(arquivo);
     qtdIlhas = recuperarNumero(arquivo);
 
-    Ilha ilhas[qtdIlhas];
+    Ilha ilha[qtdIlhas];
 
     for (int i=0; i<qtdIlhas;i++) {
-        ilhas[i].custo = recuperarNumero(arquivo);
-        ilhas[i].pontuacao = recuperarNumero(arquivo);
+        ilha[i].custo = recuperarNumero(arquivo);
+        ilha[i].pontuacao = recuperarNumero(arquivo);
     }
 
 	fclose(arquivo);
 
 	//executa algoritmo nao dinamico com repeticao
 	int diasComRepeticao = 0, pontuacaoComRepeticao = 0;
-	comRepeticao(ilhas, gastoMax, qtdIlhas, &diasComRepeticao, &pontuacaoComRepeticao);
+	comRepeticao(ilha, gastoMax, qtdIlhas, &diasComRepeticao, &pontuacaoComRepeticao);
 
     std::cout << pontuacaoComRepeticao << " " << diasComRepeticao << "\n";
 
     //executa algoritmo dinamico sem repeticao
     int diasSemRepeticao = 0, pontuacaoSemRepeticao = 0;
-    semRepeticao(ilhas, gastoMax, qtdIlhas, &diasSemRepeticao, &pontuacaoSemRepeticao);
+    semRepeticao(ilha, gastoMax, qtdIlhas, &diasSemRepeticao, &pontuacaoSemRepeticao);
 
 	std::cout << pontuacaoSemRepeticao << " " << diasSemRepeticao << "\n";
 

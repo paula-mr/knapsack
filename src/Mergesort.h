@@ -3,6 +3,6 @@
 
 #include "Ilha.h"
 
-void ordenar(Ilha ilhas[], int n);
+void ordenar(Ilha ilha[], int n);
 
 #endif

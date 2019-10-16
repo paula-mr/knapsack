@@ -5,7 +5,7 @@
 int maximo(int a, int b);
 
 //implementacao com programacao dinamica
-void semRepeticao(Ilha ilhas[], int orcamento, int tamanho, int* dias, int* pontuacao) {
+void semRepeticao(Ilha ilha[], int orcamento, int tamanho, int* dias, int* pontuacao) {
     int possibilidades[tamanho+1][orcamento+1]; 
 
     for (int i = 0; i <= tamanho; i++) { 
@@ -14,9 +14,9 @@ void semRepeticao(Ilha ilhas[], int orcamento, int tamanho, int* dias, int* pont
             if (i==0 || w==0) {
                 possibilidades[i][w] = 0; 
             }
-            else if (ilhas[i-1].custo <= w) {
+            else if (ilha[i-1].custo <= w) {
                 //se ha espaco no orcamento, adiciona o maior possivel
-                possibilidades[i][w] = maximo(ilhas[i-1].pontuacao + possibilidades[i-1][w-ilhas[i-1].custo],  possibilidades[i-1][w]); 
+                possibilidades[i][w] = maximo(ilha[i-1].pontuacao + possibilidades[i-1][w-ilha[i-1].custo],  possibilidades[i-1][w]); 
             }
             else {
                 //a pontuacao sera a mesma: nao eh possivel adicionar mais um item
@@ -29,17 +29,17 @@ void semRepeticao(Ilha ilhas[], int orcamento, int tamanho, int* dias, int* pont
 
     //salva resultado de pontuacao e o orcamento em variavel auxiliar
     int resultado = possibilidades[tamanho][orcamento];
-    int w = orcamento; 
+    int orcamentoDisponivel = orcamento; 
 
     //navega na matriz para ver quantos dias a viagem durara
     for (int i = tamanho; i > 0 && resultado > 0; i--) { 
-        if (resultado == possibilidades[i - 1][w])  
+        if (resultado == possibilidades[i - 1][orcamentoDisponivel])  
             continue;         
         else { 
             *dias += 1;
 
-            resultado = resultado - ilhas[i-1].pontuacao; 
-            w = w - ilhas[i-1].custo; 
+            resultado = resultado - ilha[i-1].pontuacao; 
+            orcamentoDisponivel = orcamentoDisponivel - ilha[i-1].custo; 
         } 
     } 
 }
@@ -50,21 +50,21 @@ int maximo(int a, int b) {
 } 
 
 //implementacao sem programacao dinamica
-void comRepeticao(Ilha ilhas[], int orcamento, int tamanho, int* dias, int* pontuacao) {
+void comRepeticao(Ilha ilha[], int orcamento, int tamanho, int* dias, int* pontuacao) {
     int custo = 0;
 
     //ordena por custo beneficio
-    ordenar(ilhas, tamanho);
+    ordenar(ilha, tamanho);
     
     //executa enquanto houver orcamento ou o array acabar
     for (int i=0; i < tamanho; i++) {
-        if (ilhas[i].custo <= (orcamento-custo)) {
+        if (ilha[i].custo <= (orcamento-custo)) {
             //caso o custo da ilha seja menor ou igual ao orcamento disponivel
             //adiciona a quantidade de vezes disponiveis
-            int qtdDias = (orcamento-custo)/ilhas[i].custo;
-            custo += ilhas[i].custo*qtdDias;
+            int qtdDias = (orcamento-custo)/ilha[i].custo;
+            custo += ilha[i].custo*qtdDias;
             *dias += qtdDias;
-            *pontuacao += ilhas[i].pontuacao*qtdDias;
+            *pontuacao += ilha[i].pontuacao*qtdDias;
         }
     }
 }

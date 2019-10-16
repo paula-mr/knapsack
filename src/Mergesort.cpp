@@ -1,29 +1,29 @@
 #include "Mergesort.h"
 
-void ordena(Ilha ilhas[], int esquerda, int direita);
-void merge(Ilha ilhas[], int esquerda, int meio, int direita);
+void ordena(Ilha ilha[], int esquerda, int direita);
+void merge(Ilha ilha[], int esquerda, int meio, int direita);
 
-void ordenar(Ilha ilhas[], int n) {
+void ordenar(Ilha ilha[], int n) {
     //inicia funcao de ordenacao por mergesort
-    ordena(ilhas, 0, n-1);
+    ordena(ilha, 0, n-1);
 }
 
-void ordena(Ilha ilhas[], int esquerda, int direita) {
+void ordena(Ilha ilha[], int esquerda, int direita) {
     //caso os apontadores nao tenham se cruzado ou sejam os mesmos
     if (esquerda < direita) {
         int meio = esquerda+(direita-esquerda)/2;
 
         //ordena metade da esquerda
-        ordena(ilhas, esquerda, meio);
+        ordena(ilha, esquerda, meio);
         //ordena metade da direita
-        ordena(ilhas, meio+1, direita);
+        ordena(ilha, meio+1, direita);
 
         //junta os arrays ordenados
-        merge(ilhas, esquerda, meio, direita);
+        merge(ilha, esquerda, meio, direita);
     }
 }
 
-void merge(Ilha ilhas[], int esquerda, int meio, int direita) {
+void merge(Ilha ilha[], int esquerda, int meio, int direita) {
     int i, j, k;
     int tamanhoEsquerda = meio - esquerda + 1;
     int tamanhoDireita =  direita - meio;
@@ -31,14 +31,14 @@ void merge(Ilha ilhas[], int esquerda, int meio, int direita) {
     //cria uma copia para o array da esquerda
     Ilha arrayEsquerda[tamanhoEsquerda], arrayDireita[tamanhoDireita];
     for (i = 0; i < tamanhoEsquerda; i++) {
-        arrayEsquerda[i].custo = ilhas[esquerda + i].custo;
-        arrayEsquerda[i].pontuacao = ilhas[esquerda + i].pontuacao;
+        arrayEsquerda[i].custo = ilha[esquerda + i].custo;
+        arrayEsquerda[i].pontuacao = ilha[esquerda + i].pontuacao;
     }
 
     //cria uma copia para o array da direita
     for (j = 0; j < tamanhoDireita; j++) {
-        arrayDireita[j].custo = ilhas[meio + 1+ j].custo;
-        arrayDireita[j].pontuacao = ilhas[meio + 1+ j].pontuacao;
+        arrayDireita[j].custo = ilha[meio + 1+ j].custo;
+        arrayDireita[j].pontuacao = ilha[meio + 1+ j].pontuacao;
     }
 
     i = 0; // valor inicial do subarray da esquerda
@@ -48,13 +48,13 @@ void merge(Ilha ilhas[], int esquerda, int meio, int direita) {
     while (i < tamanhoEsquerda && j < tamanhoDireita) {
         //define qual item possui maior custo beneficio
         if (arrayEsquerda[i].calcularCustoBeneficio() <= arrayDireita[j].calcularCustoBeneficio()) {
-            ilhas[k].custo = arrayEsquerda[i].custo;
-            ilhas[k].pontuacao = arrayEsquerda[i].pontuacao;
+            ilha[k].custo = arrayEsquerda[i].custo;
+            ilha[k].pontuacao = arrayEsquerda[i].pontuacao;
             i++;
         }
         else {
-            ilhas[k].custo = arrayDireita[j].custo;
-            ilhas[k].pontuacao = arrayDireita[j].pontuacao;
+            ilha[k].custo = arrayDireita[j].custo;
+            ilha[k].pontuacao = arrayDireita[j].pontuacao;
             j++;
         }
         k++;
@@ -62,16 +62,16 @@ void merge(Ilha ilhas[], int esquerda, int meio, int direita) {
 
     //copia o array da esquerda ordenado para o array mergeado
     while (i < tamanhoEsquerda) {
-        ilhas[k].custo = arrayEsquerda[i].custo;
-        ilhas[k].pontuacao = arrayEsquerda[i].pontuacao;
+        ilha[k].custo = arrayEsquerda[i].custo;
+        ilha[k].pontuacao = arrayEsquerda[i].pontuacao;
         i++;
         k++;
     }
 
     //copia o array da direita ordenado para o array mergeado
     while (j < tamanhoDireita) {
-        ilhas[k].custo = arrayDireita[j].custo;
-        ilhas[k].pontuacao = arrayDireita[j].pontuacao;
+        ilha[k].custo = arrayDireita[j].custo;
+        ilha[k].pontuacao = arrayDireita[j].pontuacao;
         j++;
         k++;
     }

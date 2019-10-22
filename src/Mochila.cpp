@@ -33,9 +33,9 @@ void semRepeticao(Ilha ilha[], int orcamento, int tamanho, int* dias, int* pontu
 
     //navega na matriz para ver quantos dias a viagem durara
     for (int i = tamanho; i > 0 && resultado > 0; i--) { 
-        if (resultado == possibilidades[i - 1][orcamentoDisponivel])  
-            continue;         
-        else { 
+        if (resultado == possibilidades[i - 1][orcamentoDisponivel])  {
+            //nao foi adicionada nova ilha    
+        } else { 
             *dias += 1;
 
             resultado = resultado - ilha[i-1].pontuacao; 

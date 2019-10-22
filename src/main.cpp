@@ -59,7 +59,7 @@ int recuperarNumero(FILE* arquivo) {
     int numero = 0, auxiliar;
 
     //enquanto char lido nao for espaco branco ou nova linha
-    while ((auxiliar = fgetc(arquivo)) != ' ' && auxiliar != '\n') {
+    while ((auxiliar = fgetc(arquivo)) != ' ' && auxiliar != '\n' && auxiliar != EOF) {
         numero*=10;
         //transforma char em valor numerico
         numero+=auxiliar-48;

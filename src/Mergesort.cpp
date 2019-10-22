@@ -47,12 +47,19 @@ void merge(Ilha ilha[], int esquerda, int meio, int direita) {
 
     while (i < tamanhoEsquerda && j < tamanhoDireita) {
         //define qual item possui maior custo beneficio
-        if (arrayEsquerda[i].calcularCustoBeneficio() <= arrayDireita[j].calcularCustoBeneficio()) {
+        if (arrayEsquerda[i].calcularCustoBeneficio() < arrayDireita[j].calcularCustoBeneficio()) {
             ilha[k].custo = arrayEsquerda[i].custo;
             ilha[k].pontuacao = arrayEsquerda[i].pontuacao;
             i++;
         }
-        else {
+        //se itens possui mesmo custo beneficio, ordena pela maior pontuacao
+        else if (arrayEsquerda[i].calcularCustoBeneficio() == arrayDireita[j].calcularCustoBeneficio() &&
+            arrayEsquerda[i].pontuacao > arrayDireita[j].pontuacao) {
+
+            ilha[k].custo = arrayEsquerda[i].custo;
+            ilha[k].pontuacao = arrayEsquerda[i].pontuacao;
+            i++;
+        } else {
             ilha[k].custo = arrayDireita[j].custo;
             ilha[k].pontuacao = arrayDireita[j].pontuacao;
             j++;

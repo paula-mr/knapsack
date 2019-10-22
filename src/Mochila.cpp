@@ -29,17 +29,17 @@ void semRepeticao(Ilha ilha[], int orcamento, int tamanho, int* dias, int* pontu
 
     //salva resultado de pontuacao e o orcamento em variavel auxiliar
     int resultado = possibilidades[tamanho][orcamento];
-    int orcamentoDisponivel = orcamento; 
+    int gasto = orcamento; 
 
     //navega na matriz para ver quantos dias a viagem durara
     for (int i = tamanho; i > 0 && resultado > 0; i--) { 
-        if (resultado == possibilidades[i - 1][orcamentoDisponivel])  {
+        if (resultado == possibilidades[i - 1][gasto])  {
             //nao foi adicionada nova ilha    
         } else { 
             *dias += 1;
 
-            resultado = resultado - ilha[i-1].pontuacao; 
-            orcamentoDisponivel = orcamentoDisponivel - ilha[i-1].custo; 
+            resultado -= ilha[i-1].pontuacao; 
+            gasto -= ilha[i-1].custo; 
         } 
     } 
 }
